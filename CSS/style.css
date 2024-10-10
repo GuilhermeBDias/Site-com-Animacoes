@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "Roboto Mono", monospace;
+}
+
+body {
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+header {
+    position: fixed;
+    width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 600px;
+    gap: 15%;
+    z-index: 2;
+    
+
+    & img {
+        width: 120px;
+        height: 100px;
+    }
+
+    & nav {
+        
+        & ul {
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+            justify-content: center;
+            position: relative;
+            left: -80px;
+            
+            & li{
+                width: fit-content;
+                border-radius: 20%;                
+                cursor: pointer;
+            }                        
+        }        
+    }    
+}
+
+section {
+    background-image: radial-gradient(#656565, #250902);
+    height: 100vh;
+    position: relative;
+
+    & .list {
+        width: 70vw;
+        height: 100%;
+        position: relative;
+        margin: auto;
+
+        & .item {
+            position: absolute;
+            inset: 0;
+
+            & .Car {
+                width: 70%;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+
+                & img {
+                    width: 90%;
+                    transform: rotate(-20deg);
+                }
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    background-color: #090909;
+                    width: 90%;
+                    height: 100px;
+                    top: 120%;
+                    left: 10px;
+                    border: 50%;
+                    filter: blur(50px);
+                }
+            }
+            & .content {
+                position: absolute;
+                right: 100px;
+                width: 60%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: end;
+                gap: 50px;
+
+                & .car-info {
+                    position: relative;
+                    top: 40px;
+                    font-weight: bold;
+                    color: #fff;
+                }
+
+                & h2 {
+                    font-size: 3em;
+                    line-height: 1em;
+                    color: #fff;
+                }
+
+                & .description {
+                    color: #fff;
+                    font-size: 14px;
+                    text-align: right;
+                    max-width: 350px;
+                    height: 50px;
+                    
+                }
+
+                & .information {
+                    position: relative;
+                    top: 20px;
+                    border-radius: 30px;
+                    height: 35px;
+                    width: 125px;
+                    text-transform: uppercase;
+                    border: 4px #250902;
+                    background-color: #fff;
+                    color: #250902;
+                    cursor: pointer;
+                    font-weight: bold;                    
+                                                                               
+                }                
+            }
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 200px;
+            width: 100%;
+            top: 50%;
+            border-top: 1px solid #ebebd3;
+        }
+    }
+
+    .arrow {
+        width: 70vw;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -25px);
+        display: flex;
+        justify-content: space-between;
+
+        & button:nth-child(1) {
+            & img {
+                transform: scale(-1);
+            }
+        }
+        & button {
+            top: 60%;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: 0.4s;
+            
+
+            & img {
+                width: 30px;
+                margin-top: 4px;
+                cursor: pointer;
+            }
+
+            &:hover {
+                background-color: #ebebd3;
+            }
+        }
+    }
+
+    .indicator {
+        position: relative;
+        top: -10vw;
+        left: 10px;
+        transform: translateX(50px);
+        
+        height: 10px;
+        width: 10vw;
+        display:flex;
+        flex-direction: column;
+        justify-content:end;
+        gap: 20px;
+        color: #ebebd3;
+
+        & .number {
+            font-size: 5em;
+            width: 100px;
+        }
+
+        & ul {
+            display: flex;
+            gap: 10px;
+
+            & li {
+                width: 50px;
+                height: 5px;
+                background-color: #0d0221;
+                border-radius: 5px;
+                transition: 0.5s;
+            }
+
+            & .active {
+                background-color: #ebebd3;
+            }
+        }
+    }
+}
+
+section {
+    & .list {
+    --calculation: 1;    
+        & .item {
+            transform: translateX(calc(100vw * var(--calculation)));
+            transition: 0.5s;
+            opacity: 0;
+
+            & .Car {
+                & img {
+                    transform: rotate(0);
+                    transition: 0.5s;
+                    transition-delay: 0.3s;
+                }
+            }
+
+            & .content {
+                & .car-info,
+                h2,
+                .description,
+                .information {
+                    transform: translateX(calc(200px * var(--calculation)));
+                    transition: 0.7s;
+                    transition-delay: 0.3s;
+                    opacity: 0;
+                }
+
+                & h2 {
+                    transition-delay: 0.5s;
+                }
+
+                & .description {
+                    transition-delay: 0.7s;
+                }
+
+                & .information {
+                    transition-delay: 0.9s;
+                }
+            }
+        }
+
+        & .active {
+            transform: translateX(0);
+            transition: 0.5s;
+            opacity: 1;
+
+            & .Car {
+                & img {
+                    transform: rotate(-15deg);
+                }
+            }
+
+            & .content {
+                & .car-info,
+                h2,
+                .description,
+                .information {
+                    transform: translateX(0);
+                    opacity: 1;
+                
+                }
+            }
+        }
+    }
+}
